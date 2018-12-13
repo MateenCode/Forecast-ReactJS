@@ -5,6 +5,7 @@ import "./App.css";
 import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
+import WeatherList from "./components/WeatherList";
 
 const API_KEY = "74a0d65d1017ee174d9493121f8fca0b";
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
+    weatherList: [],
     error: undefined
   };
   getWeather = async e => {
@@ -22,9 +24,14 @@ class App extends React.Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=celsius`
+    );
+    const api_call2 = await fetch(
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=celsius`
     );
     const data = await api_call.json();
+    const data2 = await api_call2.json();
+
     if (city && country) {
       this.setState({
         temperature: data.main.temp,
@@ -32,6 +39,7 @@ class App extends React.Component {
         country: data.sys.country,
         humidity: data.main.humidity,
         description: data.weather[0].description,
+        weatherList: data2.list,
         error: ""
       });
     } else {
@@ -41,10 +49,12 @@ class App extends React.Component {
         country: undefined,
         humidity: undefined,
         description: undefined,
+        weatherList: undefined,
         error: "Please enter the values."
       });
     }
   };
+
   render() {
     return (
       <div>
