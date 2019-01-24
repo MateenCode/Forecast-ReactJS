@@ -1,6 +1,6 @@
 # [Weather Finder](https://mateencode.github.io/Alphacode-OfficalSite/)
 
-A weather app that gives you the current weather using weather map api
+A weather app that gives you current forest for any city ☁️🛰️ using the weather map api 
 
 # ScreenShot
 
