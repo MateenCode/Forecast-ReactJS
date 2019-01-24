@@ -5,7 +5,6 @@ import "./App.css";
 import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
-import WeatherList from "./components/WeatherList";
 
 const API_KEY = "74a0d65d1017ee174d9493121f8fca0b";
 
